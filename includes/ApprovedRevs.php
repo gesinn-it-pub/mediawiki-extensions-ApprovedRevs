@@ -574,6 +574,9 @@ class ApprovedRevs {
 		$dbw = wfGetDB( DB_MASTER );
 		$page_id = $title->getArticleID();
 		$dbw->delete( 'approved_revs', [ 'page_id' => $page_id ] );
+		unset( self::$mApprovedContentForPage[ $page_id ] );
+		unset( self::$mApprovedRevIDForPage[ $page_id ] );
+		unset( self::$mApproverForPage[ $page_id ] );
 	}
 
 	/**
